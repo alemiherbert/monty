@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -36,6 +38,7 @@ typedef struct instruction_s
 } instruction_t;
 
 
+ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 stack_t *add_node_end(stack_t **head, const int n);
 void remove_node_start(stack_t **head);
 void remove_node_end(stack_t **head);

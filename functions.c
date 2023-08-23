@@ -17,8 +17,8 @@ stack_t *add_node_end(stack_t **head, const int n)
 	if (!node)
 		return (NULL);
 
-    node->n = n;
-    node->next = NULL;
+	node->n = n;
+	node->next = NULL;
 
 	if (*head == NULL)
 	{
@@ -43,9 +43,14 @@ void remove_node_start(stack_t **head)
 {
 	stack_t *node;
 
-	node->prev = NULL;
-	node->next = (*head)->next;
+	if (!(*head)->next)
+	{
+		free(*head);
+		*head = NULL;
+		return;
+	}
 
+	node = (*head)->next;
 	free(*head);
 	*head = node;
 }
@@ -58,9 +63,10 @@ void remove_node_end(stack_t **head)
 {
 	stack_t *node;
 
-    if (!head || *head)
-        return;
-
+	if (!head || !*head)
+	{
+		return;
+	}
 
 	node = *head;
 	if (!node->next)
