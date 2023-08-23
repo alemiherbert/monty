@@ -8,7 +8,7 @@
 */
 int main(int ac, char **av)
 {
-    int fd;
+	int fd;
 
 	if (ac != 2)
 	{
@@ -23,8 +23,8 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-    
+	
 
-    close(fd);
-    return (0);
+	close(fd);
+	return (0);
 }
