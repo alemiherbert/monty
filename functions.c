@@ -4,6 +4,7 @@
  * add_node_end - add a node at the top of a stack or queue
  * @head: pointer to the stack or queue
  * @n: data to store at the node
+ * Return: pointer to the new node or NULL
  */
 stack_t *add_node_end(stack_t **head, const int n)
 {
@@ -16,8 +17,8 @@ stack_t *add_node_end(stack_t **head, const int n)
 	if (!node)
 		return (NULL);
 
-	node->n = n;
-	node->next = NULL;
+    node->n;
+    node->next = NULL;
 
 	if (*head == NULL)
 	{
@@ -35,7 +36,8 @@ stack_t *add_node_end(stack_t **head, const int n)
 }
 
 /**
- * remove_node_start - remove the node at the beginning of a
+ * remove_node_start - remove the node at the beginning of a stack
+ * @head: pointer to the first node
  */
 void remove_node_start(stack_t **head)
 {
@@ -50,14 +52,14 @@ void remove_node_start(stack_t **head)
 
 /**
  * remove_node_end - remove the node at the bottom of the stack
- *
+ * @head: pointer to the first node
  */
 void remove_node_end(stack_t **head)
 {
 	stack_t *node;
 
-	if (!head || *head)
-		return;
+    if (!head || *head)
+        return (NULL);
 
 
 	node = *head;
@@ -72,17 +74,4 @@ void remove_node_end(stack_t **head)
 		node = node->next;
 	free(node->next);
 	node->next = NULL;
-}
-
-
-ssize_t print_stack(const stack_t *head)
-{
-	ssize_t n;
-
-	for (n = 0; head; head = head->next)
-	{
-		printf("%d\n", head->n);
-		n++;
-	}
-	return (n);
 }

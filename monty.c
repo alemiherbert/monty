@@ -1,10 +1,14 @@
 #include "monty.h"
 
-stack_t *stack;
-
+/**
+ * main - a simple byte code interpreter
+ * @ac: argument count
+ * @av: argument vector
+ * Return: 0 for success and other for faliure
+*/
 int main(int ac, char **av)
 {
-	int fd;
+    int fd;
 
 	if (ac != 2)
 	{
@@ -19,14 +23,8 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	stack = NULL;
-	add_node_end(&stack, 12);
-	add_node_end(&stack, 29);
-	add_node_end(&stack, 33);
-	add_node_end(&stack, 41);
-	print_stack(stack);
-	
+    
 
-	close(fd);
-	return (0);
+    close(fd);
+    return (0);
 }
