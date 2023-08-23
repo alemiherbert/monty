@@ -59,7 +59,7 @@ void remove_node_end(stack_t **head)
 	stack_t *node;
 
     if (!head || *head)
-        return (NULL);
+        return;
 
 
 	node = *head;
