@@ -7,31 +7,31 @@
  */
 stack_t *add_node_end(stack_t **head, const int n)
 {
-    stack_t *node, *tmp;
+	stack_t *node, *tmp;
 
-    if (!head)
-        return (NULL);
+	if (!head)
+		return (NULL);
 
-    node = malloc(sizeof(stack_t));
-    if (!node)
-        return (NULL);
+	node = malloc(sizeof(stack_t));
+	if (!node)
+		return (NULL);
 
-    node->n;
-    node->next = NULL;
+	node->n = n;
+	node->next = NULL;
 
-    if (*head == NULL)
-    {
-        node->prev = NULL;
-        *head = node;
-        return (node);
-    }
+	if (*head == NULL)
+	{
+		node->prev = NULL;
+		*head = node;
+		return (node);
+	}
 
-    for (tmp = *head; tmp->next; tmp = tmp->next)
-        ;
+	for (tmp = *head; tmp->next; tmp = tmp->next)
+		;
 
-    tmp->next = node;
-    node->prev = tmp;
-    return (node);
+	tmp->next = node;
+	node->prev = tmp;
+	return (node);
 }
 
 /**
@@ -39,13 +39,13 @@ stack_t *add_node_end(stack_t **head, const int n)
  */
 void remove_node_start(stack_t **head)
 {
-    stack_t *node;
+	stack_t *node;
 
-    node->prev = NULL;
-    node->next = (*head)->next;
+	node->prev = NULL;
+	node->next = (*head)->next;
 
-    free(*head);
-    *head = node;
+	free(*head);
+	*head = node;
 }
 
 /**
@@ -54,22 +54,35 @@ void remove_node_start(stack_t **head)
  */
 void remove_node_end(stack_t **head)
 {
-    stack_t *node;
+	stack_t *node;
 
-    if (!head || *head)
-        return (NULL);
+	if (!head || *head)
+		return;
 
 
-    node = *head;
-    if (!node->next)
-    {
-        free(node);
-        *head = NULL;
-        return;
-    }
+	node = *head;
+	if (!node->next)
+	{
+		free(node);
+		*head = NULL;
+		return;
+	}
 
-    while (node->next->next)
-        node = node->next;
-    free(node->next);
-    node->next = NULL;
+	while (node->next->next)
+		node = node->next;
+	free(node->next);
+	node->next = NULL;
+}
+
+
+ssize_t print_stack(const stack_t *head)
+{
+	ssize_t n;
+
+	for (n = 0; head; head = head->next)
+	{
+		printf("%d\n", head->n);
+		n++;
+	}
+	return (n);
 }

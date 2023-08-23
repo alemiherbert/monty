@@ -38,5 +38,9 @@ typedef struct instruction_s
 
 extern stack_t *stack;
 
+stack_t *add_node_end(stack_t **head, const int n);
+void remove_node_start(stack_t **head);
+void remove_node_end(stack_t **head);
+ssize_t print_stack(const stack_t *head);
 
 #endif /* MONTY_H */
