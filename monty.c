@@ -9,6 +9,9 @@
 int main(int ac, char **av)
 {
 	FILE *file_ptr;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t nread;
 
 	if (ac != 2)
 	{
@@ -23,9 +26,12 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-
+	while ((nread = getline(&line, &len, file_ptr)) != -1)
+	{
+		fwrite(line, nread, 1, stdout);
+	}
 	
-
+	free(line);
 	fclose(file_ptr);
 	return (0);
 }
