@@ -44,6 +44,7 @@ typedef struct instruction_s
  * @command: the command to be interpreted
  * 0 is for stack, 1 is for queue
  * @FILE: the file being handled
+ * @file: this is the file in use
  */
 typedef struct job_s
 {
