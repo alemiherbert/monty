@@ -1,5 +1,7 @@
 #include "monty.h"
 
+job_t *job;
+
 /**
  * main - a simple byte code interpreter
  * @ac: argument count
@@ -9,13 +11,18 @@
 int main(int ac, char **av)
 {
 	FILE *file_ptr;
-	char *line = NULL;
-	size_t line_num = 1, len = 0;
-	ssize_t nread;
+	stack_t *stack;
 
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+
+	job = malloc(sizeof(job_t));
+	if (!job)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -26,23 +33,11 @@ int main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 
-	instruction_t instructions[] = {
-		{"push", NULL},
-		{NULL, NULL}
-	};
+	job->file = file_ptr;
 
-	while ((nread = getline(&line, &len, file_ptr)) != -1)
-	{
-		if (nread > 0 && line[nread - 1] == '\n')
-			line[nread - 1] = '\0';
+	run_job(&stack);
 
-		// push 6
-		// strtok 
-		printf("Line %lu: %s\n", line_num, line);
-		line_num++;
-	}
-
-	free(line);
+	/*free_stack(stack);*/
 	fclose(file_ptr);
 	return (0);
 }

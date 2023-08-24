@@ -22,7 +22,6 @@ typedef struct stack_s
 	struct stack_s *next;
 } stack_t;
 
-
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -37,12 +36,32 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct job_s - the current job being executed
+ * @flag: wether we are handling a stack or queue
+ * @args: arguments
+ * @command: the command to be interpreted
+ * 0 is for stack, 1 is for queue
+ * @FILE: the file being handled
+ */
+typedef struct job_s
+{
+	int flag;
+	char *args;
+	char *command;
+	FILE *file;
+} job_t;
+
+extern job_t *job;
 
 ssize_t getline(char **lineptr, size_t *n, FILE *stream);
 stack_t *add_node_end(stack_t **head, const int n);
 void remove_node_start(stack_t **head);
 void remove_node_end(stack_t **head);
-ssize_t print_stack(const stack_t *head);
+/*ssize_t print_stack(const stack_t *head);*/
+int run_job(stack_t **stack);
+int execute_command(stack_t **stack, size_t line);
 
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
 #endif /* MONTY_H */
-
