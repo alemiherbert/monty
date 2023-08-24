@@ -3,6 +3,7 @@
 /**
  * push - this function adds data into the stack
  * @stack: this is the pointer to the node
+ * @line_number: this outputs the number of line of the file
 */
 void push(stack_t **stack, unsigned int line_number)
 {
@@ -17,6 +18,7 @@ void push(stack_t **stack, unsigned int line_number)
 /**
  * pall - this function helps prints everything in the stack
  * @stack: this is the pointer to the node
+ * @line_number: this line number of the function
 */
 void pall(stack_t **stack, unsigned int line_number)
 {
