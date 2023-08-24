@@ -1,6 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 #include <stdio.h>
+#include <ctype.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>

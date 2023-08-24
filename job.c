@@ -7,6 +7,7 @@ instruction_t instructions[] = {
 
 int run_job(stack_t **stack)
 {
+    char *trimmed_line;
     size_t len, line;
     ssize_t nread;
 
@@ -15,7 +16,17 @@ int run_job(stack_t **stack)
     {
         nread = getline(&(job->command), &len, job->file);
         if (nread == EOF)
-            return (0);
+            return 0;
+
+        trimmed_line = job->command;
+        while (*trimmed_line && isspace(*trimmed_line))
+            trimmed_line++;
+
+        if (*trimmed_line == '\0')
+        {
+            line++;
+            continue;
+        }
 
         execute_command(stack, line);
 

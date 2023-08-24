@@ -14,7 +14,7 @@ void pall(stack_t **stack, unsigned int line_number)
 {
     stack_t *tmp = *stack;
     if (!tmp)
-        exit(EXIT_FAILURE);
+        return;
     
     (void) line_number;
 
