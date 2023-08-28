@@ -45,7 +45,7 @@ int main(int ac, char **av)
  * execute_command - interprete a line of code
  * @stack: the stack
  * @line_number: the line number
-*/
+ */
 void execute_command(stack_t **stack, unsigned int line_number)
 {
 	unsigned int i;
@@ -65,6 +65,12 @@ void execute_command(stack_t **stack, unsigned int line_number)
 	for (i = 0; instructions[i].opcode; i++)
 	{
 		if (strcmp(job.opcode, instructions[i].opcode) == 0)
+		{
 			instructions[i].f(stack, line_number);
+			return;
+		}
 	}
+
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, job.opcode);
+	exit(EXIT_FAILURE);
 }
